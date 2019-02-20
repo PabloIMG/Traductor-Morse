@@ -1,22 +1,25 @@
 #include <stdio.h>
 
-void letras();
-char palabra[100];
+void letras(char letra);
 
 int main(){
-	int n=0,i;
+	int n=-1,i; // n con valor -1 para quitar el último espacio agregado por fgets
+	char palabra[100];
 	char letra;
 	
 	printf("Ingrese palabra o frase: ");
-	gets(palabra);
+	fgets(palabra, 100, stdin);
 	
 	for(i=0;i<100;i++){						//Se eliminan archivos basura.
 		if(palabra[i]!='\0'){
 			n = n+1;
 		}
+		else{
+			i = 100; // Si detecta un enter, salta a la última posición
+		}
 	}
 	
-		//Imprimir palabra ingresada y traducci�n.
+		//Imprimir palabra ingresada y traducción.
 	printf("\nPalabra ingresada: \n");
 	for(i=0;i<n;i++){
 		printf("%c",palabra[i]);
@@ -33,12 +36,11 @@ int main(){
 	
 	printf("\n \nMuchas gracias por usar nuestro programa. \nPresione cualquier tecla para continuar...");
 	getchar();
-	getchar();
 	
 	return  0;
 }
 
-void letras(letra){
+void letras(char letra){
 	switch(letra){
 			case 'a': printf(".-"); break;
 			case 'b': printf("-..."); break;
